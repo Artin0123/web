@@ -1,0 +1,58 @@
+body {
+    background-color: #F5F5DC;
+    margin: 0;
+    padding: 0;
+}
+
+.grad {
+    margin: 20px;
+    height: 600px;
+    background-image: linear-gradient(to bottom right, rgb(0, 255, 72), rgb(0, 213, 255));
+    border-radius: 25px;
+}
+
+h1 {
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-family: Comic Sans MS;
+    font-size: 400%;
+    text-shadow: 5px 5px 12px black;
+}
+
+.img1 img {
+    max-width: 100%;
+    max-height: 100%;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+.img1 p {
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: 150%;
+    font-weight: bold;
+    font-style: italic;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.img1 {
+    height: auto;
+    width: 480px;
+    background-color: white;
+    border-radius: 25px;
+    margin-left: 20px;
+    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.5);
+    animation-name: example;
+    animation-delay: 2s;
+    animation-duration: 4s;
+}
+
+@keyframes example {
+    from {
+        left: 0px;
+    }
+
+    to {
+        left: 200px;
+    }
+}
