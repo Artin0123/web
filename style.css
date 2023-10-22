@@ -7,8 +7,8 @@ body {
 .grad {
     margin-left: 20px;
     margin-right: 20px;
-    margin-bottom: 100px;
-    height: 800px;
+    margin-bottom: 50px;
+    height: 1000px;
     background-image: linear-gradient(to bottom right, rgb(0, 255, 72), rgb(0, 213, 255));
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
