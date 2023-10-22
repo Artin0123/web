@@ -61,8 +61,8 @@ h2 {
 }
 
 .img1 img {
-    max-width: 30%;
-    max-height: 30%;
+    max-width: 40%;
+    max-height: 40%;
     border-radius: 25px;
     box-shadow: 5px 10px 12px rgba(0, 0, 0, 0.5);
 }
