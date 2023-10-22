@@ -26,7 +26,9 @@ h1 {
     text-align: center;
     font-family: 'Comic Sans MS';
     font-size: 400%;
-    text-shadow: 5px 5px 10px black;
+    text-shadow: 4px 4px 8px rgb(0, 0, 0, 0.5);
+    color: rgb(179, 131, 251);
+    -webkit-text-stroke: 2px #454545;
 }
 
 h2 {
@@ -34,50 +36,27 @@ h2 {
     text-align: center;
     font-family: 'Comic Sans MS';
     font-size: 250%;
-    text-shadow: 3px 3px 6px black;
+    text-shadow: 4px 4px 8px rgb(0, 0, 0, 0.5);
+    color: rgb(255, 216, 108);
+    -webkit-text-stroke: 2px #454545;
 }
 
 .self p {
     color: rgb(255, 255, 255);
-    margin-left: 40px;
     text-align: center;
     font-family: 'Noto Sans TC';
     font-size: 125%;
-    text-shadow: 2px 2px 4px black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    margin-left: 25px;
 }
 
 .img1 img {
+    height: 240px;
+    width: fit-content;
     max-width: 100%;
     max-height: 100%;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-}
-
-.img1 p {
-    color: rgb(46, 45, 45);
-    text-align: center;
-    font-size: 150%;
-    font-weight: bold;
-    /* font-style: italic; */
-    font-family: 'Lucida Handwriting';
-}
-
-.img1 {
-    height: auto;
-    width: 480px;
-    /* 使用 flexbox 來對齊圖片和 ul */
-    align-items: center;
-    /* 垂直置中對齊 */
-    justify-content: flex-start;
-    /* 從左側對齊 */
-    background-color: #F5F5DC;
     border-radius: 25px;
-    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    /* 設置初始透明度為0，使其隱藏 */
-    transform: translateY(40px);
-    /* 將元素向下位移40px，使其從下方進入 */
-    animation: fadeInFromBottom 1s ease-out forwards;
+    box-shadow: 5px 10px 12px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes fadeInFromBottom {
@@ -91,7 +70,6 @@ h2 {
 
 ul {
     margin-top: 50px;
-    margin-left: 20px;
     display: flex;
 }
 
@@ -144,6 +122,17 @@ ul li:nth-child(3) a:hover .fab {
     color: #24292e;
 }
 
-ul li:nth-child(4) a:hover .fab {
-    color: #7289DA;
+.contact {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.contact p {
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-family: 'Noto Sans TC';
+    font-size: 250%;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-left: 25px;
 }
