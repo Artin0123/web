@@ -2,7 +2,7 @@
     'use strict';
     // 配置選項
     const CONFIG = {
-        endpoint: '	https://api-backend-nbfh.onrender.com/api/collect',
+        endpoint: 'https://api-backend-nbfh.onrender.com/api/collect',
         timeout: 5000,
         retryCount: 1,
         debug: false,
