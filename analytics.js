@@ -9,11 +9,11 @@
         delayTime: 5000 // 延遲5秒
     };
     // 調試日誌函數
-    // function log(message, data = null) {
-        // if (CONFIG.debug) {
-            // console.log('[Analytics]', message, data);
-        // }
-    // }
+    function log(message, data = null) {
+        if (CONFIG.debug) {
+            console.log('[Analytics]', message, data);
+        }
+    }
     // 收集瀏覽器資訊
     function collectBrowserInfo() {
         try {
@@ -48,16 +48,16 @@
                 referrer: document.referrer || 'Direct'
             };
         } catch (error) {
-            // log('收集瀏覽器資訊時發生錯誤:', error);
+            log('收集瀏覽器資訊時發生錯誤:', error);
             return {};
         }
     }
     // 發送分析數據
     async function sendAnalytics(retryCount = 0) {
         try {
-            // log('開始收集並發送分析數據...');
+            log('開始收集並發送分析數據...');
             const browserInfo = collectBrowserInfo();
-            // log('收集到的瀏覽器資訊:', browserInfo);
+            log('收集到的瀏覽器資訊:', browserInfo);
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), CONFIG.timeout);
             const response = await fetch(CONFIG.endpoint, {
@@ -74,18 +74,18 @@
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
             const result = await response.json();
-            // log('分析數據發送成功:', result);
+            log('分析數據發送成功:', result);
             return result;
         } catch (error) {
-            // log('發送分析數據失敗:', error);
+            log('發送分析數據失敗:', error);
             if (retryCount < CONFIG.retryCount) {
                 const delay = Math.pow(2, retryCount) * 1000;
-                // log(`${delay}ms 後進行第 ${retryCount + 1} 次重試...`);
+                log(`${delay}ms 後進行第 ${retryCount + 1} 次重試...`);
                 setTimeout(() => {
                     sendAnalytics(retryCount + 1);
                 }, delay);
             } else {
-                // log('重試次數已達上限，停止發送');
+                log('重試次數已達上限，停止發送');
             }
             throw error;
         }
@@ -114,16 +114,16 @@
         try {
             // 1. 等待 DOM 準備完成
             await waitForDOMReady();
-            // log('DOM 已準備完成');
+            log('DOM 已準備完成');
             // 2. 延遲指定時間
-            // log(`延遲 ${CONFIG.delayTime}ms 後開始收集數據...`);
+            log(`延遲 ${CONFIG.delayTime}ms 後開始收集數據...`);
             await delayedExecution(() => {
-                // log('延遲時間已到，開始執行分析');
+                log('延遲時間已到，開始執行分析');
             }, CONFIG.delayTime);
             // 3. 發送數據
             sendAnalytics();
         } catch (error) {
-            // log('初始化分析時發生錯誤:', error);
+            log('初始化分析時發生錯誤:', error);
         }
     }
     // 頁面卸載時的備用發送
@@ -137,9 +137,9 @@
                         beacon_fallback: true
                     });
                     navigator.sendBeacon(CONFIG.endpoint, data);
-                    // log('使用 Beacon API 發送備用數據');
+                    log('使用 Beacon API 發送備用數據');
                 } catch (error) {
-                    // log('Beacon 發送失敗:', error);
+                    log('Beacon 發送失敗:', error);
                 }
             }
         });
@@ -148,18 +148,17 @@
     window.Analytics = {
         config: function(options) {
             Object.assign(CONFIG, options);
-            // log('配置已更新:', CONFIG);
+            log('配置已更新:', CONFIG);
         },
         send: sendAnalytics,
         collect: collectBrowserInfo,
         // 手動觸發（忽略延遲）
         sendNow: function() {
-            // log('手動觸發分析發送');
+            log('手動觸發分析發送');
             sendAnalytics();
         }
     };
     // 自動初始化
     initAnalytics();
     setupBeaconFallback();
-    // log('分析腳本已載入並初始化（延遲模式）');
 })();
