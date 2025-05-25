@@ -117,9 +117,14 @@
             // Initialize Firebase
             const app = initializeApp(firebaseConfig);
             const analytics = getAnalytics(app);
-            // Log events
+            // 基本事件
             logEvent(analytics, 'page_view');
-            logEvent(analytics, 'visit_recorded', { source: 'pixel.png' });
+            // 追蹤 pixel.png 被載入（等圖片成功 load 才觸發）
+            const pixel = new Image();
+            pixel.onload = () => {
+                logEvent(analytics, 'visit_recorded', { source: 'pixel.png' });
+            };
+            pixel.src = 'https://api-backend-nbfh.onrender.com/assets/pixel.png';
         </script>
     </body>
 
