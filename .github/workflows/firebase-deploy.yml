@@ -4,6 +4,8 @@ on:
     branches: ["main"]
 jobs:
   build-and-deploy:
+    environment:
+      name: firebase-hosting
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
