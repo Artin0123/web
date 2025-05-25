@@ -2,7 +2,7 @@
     'use strict';
     // 配置選項
     const CONFIG = {
-        endpoint: '/api/collect',
+        endpoint: '	https://api-backend-nbfh.onrender.com/api/collect',
         timeout: 5000,
         retryCount: 1,
         debug: false,
@@ -48,7 +48,7 @@
                 referrer: document.referrer || 'Direct'
             };
         } catch (error) {
-            log('收集瀏覽器資訊時發生錯誤:', error);
+            // log('收集瀏覽器資訊時發生錯誤:', error);
             return {};
         }
     }
