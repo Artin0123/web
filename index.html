@@ -1,71 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Artin - 個人網站</title>
+        <meta name="description" content="Artin - 個人網站">
+        <!-- Favicon -->
+        <link rel="icon" href="assets/favicon.png?" type="image/png" />
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        <!-- 自定義樣式 -->
         <link rel="stylesheet" href="style.css">
-        <link href="https://fonts.googleapis.com/earlyaccess/notosanstc.css" rel="stylesheet">
-        <script src="script.js"></script>
-        <title>Artin0123</title>
-        <link rel="icon" href="favicon.png?" type="image/png" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
-        <!-- 為什麼要在.png後面加"?" -->
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-QETSCC285W"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-
-            gtag('config', 'G-QETSCC285W');
-        </script>
     </head>
 
     <body>
-        <div class="grad">
-            <br />
-            <h1>Hello</h1>
-            <h2>I am Artin</h2>
-            <br />
-            <div class="img1">
-                <img src="IMG_3004.JPG" alt="Good images">
+        <!-- 滾動指示器 -->
+        <div class="scroll-indicator"></div>
+        <!-- 動畫背景 -->
+        <div class="animated-bg"></div>
+        <!-- 側邊欄 -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-bars"></i><span class="header-text">等雨停</span></h3>
             </div>
-            <div class="self">
-                <p>
-                    苗栗縣人
-                    <br />
-                    就讀元智大學資工系
-                    <br />
-                    我現在太忙了，沒有時間寫這個網站
-                    <br />
-                    底下有聯絡方式
-                    <br />
-                    <br />
-                    <a href="https://github.com/Artin0123/web"><img
-                            src="https://vbr.nathanchung.dev/badge?page_id=artin0123.web&text=瀏覽次數&style=for-the-badge&logo=github"
-                            alt="visitor badge" width="200" /></a>
-
-                </p>
-                <div class="contact">
-                    <div class="link">
-                        <h3>Contact Me:</h3>
-                        <a href="mailto:artinlintw@gmail.com">
-                            <i class="fa-solid fa-envelope" style="color: #ebcaca;"></i>
-                        </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> <span
+                            class="nav-text">主頁面</span></a></li>
+                <li><a href="#about" class="nav-link"><i class="fas fa-user"></i> <span class="nav-text">關於我</span></a>
+                </li>
+                <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> <span
+                            class="nav-text">聯絡我</span></a></li>
+            </ul>
+            <div class="theme-toggle-container">
+                <div class="theme-toggle"> <i class="fas fa-moon"></i> </div>
+            </div>
+        </div>
+        <!-- 主內容區域 -->
+        <div class="content">
+            <section id="home" class="page active hero-bg">
+                <div class="page-content fade-in">
+                    <div class="home-title">
+                        <h2>你好，我是</h2>
+                        <h1 class="gradient-text">阿廷</h1>
                     </div>
-                    <ul>
-                        <li><a href="https://youtube.com/@artinlin"><i class="fab fa-youtube"
-                                    aria-hidden="true"></i></a>
-                        </li>
-                        <li><a href="https://www.twitch.tv/artin0123"><i class="fab fa-twitch"
-                                    aria-hidden="true"></i></a>
-                        </li>
-                        <li><a href="https://github.com/Artin0123"><i class="fab fa-brands fa-github"
-                                    aria-hidden="true"></i></a></li>
-                    </ul>
+                    <div class="img1">
+                        <img src="assets/IMG_3004.JPG" alt="Good images">
+                        <img src="https://api-backend-nbfh.onrender.com/assets/pixel.png" style="display:none" />
+                    </div>
                 </div>
-            </div>
+            </section>
+            <section id="about" class="page">
+                <div class="page-content fade-in">
+                    <h2 class="gradient-text">關於我</h2>
+                    <div class="self">
+                        <p>
+                            英文名字是 Artin
+                            <br />
+                            翻成中文就是阿廷
+                            <br />
+                            住苗栗但不是客家人
+                            <br />
+                            就讀元智幼稚園
+                            <br />
+                            歡迎找我認親 (?)
+                            <br />
+                            或是一起玩麥塊
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section id="contact" class="page">
+                <div class="page-content fade-in">
+                    <h2 class="gradient-text">聯絡我</h2>
+                    <div class="contact">
+                        <div class="link"> <a href="mailto:artinlintw@gmail.com" class="email-link"> <i
+                                    class="fa-solid fa-envelope"></i> <span
+                                    class="email-text">artinlintw@gmail.com</span>
+                            </a> </div>
+                        <ul class="social-links">
+                            <li><a href="https://youtube.com/@artinlin"><i class="fab fa-youtube"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="https://www.twitch.tv/artin0123"><i class="fab fa-twitch"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="https://github.com/Artin0123"><i class="fab fa-brands fa-github"
+                                        aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mystery-link-container">
+                    <a href="https://x.com/Artin0123" class="mystery-link">神秘的連結</a>
+                    <a href="https://www.pixiv.net/users/32640236" class="mystery-link">另一個神秘的連結</a>
+                    <a href="https://civitai.com/user/artinlintw" class="mystery-link">應該是正常的連結</a>
+                </div>
+            </section>
+        </div>
+        <script src="script.js"></script>
+        <script src="analytics.js"></script>
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+                apiKey: "AIzaSyBvCz2jAQeMueMw-MLEWzrQQATg0uNW2hI",
+                authDomain: "arttinweb.firebaseapp.com",
+                projectId: "arttinweb",
+                storageBucket: "arttinweb.firebasestorage.app",
+                messagingSenderId: "256464876139",
+                appId: "1:256464876139:web:c6728b0d52f947d62c372e",
+                measurementId: "G-ZD3Q4FRJZZ"
+            };
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+        </script>
     </body>
 
 </html>

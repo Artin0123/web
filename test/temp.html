@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>王小明 - 前端開發者 & UI/UX 設計師</title>
+        <meta name="description" content="王小明的個人作品集網站，專注於前端開發和UI/UX設計">
+
+        <!-- 外部字體 -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap"
+            rel="stylesheet">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+        <!-- Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Noto Sans TC', sans-serif;
+            }
+
+            body {
+                background-color: #0f172a;
+                color: #f8fafc;
+                overflow-x: hidden;
+            }
+
+            .gradient-text {
+                background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                background-size: 200% auto;
+                animation: textShine 3s ease-in-out infinite alternate;
+            }
+
+            @keyframes textShine {
+                0% {
+                    background-position: 0% center;
+                }
+
+                100% {
+                    background-position: 100% center;
+                }
+            }
+
+            .hero-bg {
+                background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.15) 0%, rgba(30, 64, 175, 0.05) 50%, rgba(15, 23,
+                            42, 0) 100%);
+            }
+
+            .card {
+                background: rgba(30, 41, 59, 0.5);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                transition: all 0.3s ease;
+            }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                border: 1px solid rgba(56, 189, 248, 0.3);
+            }
+
+            .floating {
+                animation: floating 3s ease-in-out infinite;
+            }
+
+            @keyframes floating {
+                0% {
+                    transform: translateY(0px);
+                }
+
+                50% {
+                    transform: translateY(-15px);
+                }
+
+                100% {
+                    transform: translateY(0px);
+                }
+            }
+
+            .particle {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(56, 189, 248, 0.5);
+                pointer-events: none;
+            }
+
+            .progress-bar {
+                height: 8px;
+                border-radius: 4px;
+                background: linear-gradient(90deg, #38bdf8, #818cf8);
+                transition: width 1s ease-in-out;
+            }
+
+            .nav-link {
+                position: relative;
+                transition: all 0.3s ease;
+            }
+
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -2px;
+                left: 0;
+                background: linear-gradient(90deg, #38bdf8, #818cf8);
+                transition: width 0.3s ease;
+            }
+
+            .nav-link:hover::after {
+                width: 100%;
+            }
+
+            .cursor-glow {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: rgba(56, 189, 248, 0.5);
+                position: fixed;
+                pointer-events: none;
+                transform: translate(-50%, -50%);
+                z-index: 9999;
+                mix-blend-mode: screen;
+                transition: transform 0.1s ease;
+            }
+
+            .theme-toggle {
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .theme-toggle:hover {
+                transform: rotate(45deg);
+            }
+
+            .dark-mode {
+                background-color: #f8fafc;
+                color: #0f172a;
+            }
+
+            .dark-mode .card {
+                background: rgba(241, 245, 249, 0.7);
+                border: 1px solid rgba(15, 23, 42, 0.1);
+            }
+
+            .dark-mode .card:hover {
+                border: 1px solid rgba(56, 189, 248, 0.5);
+            }
+
+            .scroll-indicator {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 3px;
+                background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+                z-index: 9999;
+                transition: width 0.1s ease;
+            }
+
+            .btn-primary {
+                background: linear-gradient(90deg, #38bdf8, #818cf8);
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
+            }
+
+            .btn-primary::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transition: all 0.5s ease;
+            }
+
+            .btn-primary:hover::after {
+                left: 100%;
+            }
+
+            .portfolio-item {
+                overflow: hidden;
+                position: relative;
+            }
+
+            .portfolio-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(15, 23, 42, 0.8);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+
+            .portfolio-item:hover .portfolio-overlay {
+                opacity: 1;
+            }
+
+            .portfolio-item:hover img {
+                transform: scale(1.1);
+            }
+
+            .portfolio-item img {
+                transition: all 0.5s ease;
+            }
+
+            .timeline-item {
+                position: relative;
+                padding-left: 30px;
+            }
+
+            .timeline-item::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 2px;
+                background: linear-gradient(to bottom, #38bdf8, #818cf8);
+            }
+
+            .timeline-dot {
+                position: absolute;
+                left: -5px;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: #38bdf8;
+                top: 24px;
+            }
+
+            .animated-bg {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                opacity: 0.1;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- 滾動指示器 -->
+        <div class="scroll-indicator"></div>
+
+        <!-- 鼠標跟隨效果 -->
+        <div class="cursor-glow"></div>
+
+        <!-- 動畫背景 -->
+        <div class="animated-bg"></div>
+
+        <!-- 導航欄 -->
+        <nav class="fixed top-0 left-0 w-full bg-slate-900/80 backdrop-blur-md z-50 transition-all duration-300">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold gradient-text">個人品牌</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-slate-300 hover:text-white">首頁</a>
+                    <a href="#about" class="nav-link text-slate-300 hover:text-white">關於我</a>
+                    <a href="#skills" class="nav-link text-slate-300 hover:text-white">技能</a>
+                    <a href="#portfolio" class="nav-link text-slate-300 hover:text-white">作品集</a>
+                    <a href="#experience" class="nav-link text-slate-300 hover:text-white">經歷</a>
+                    <a href="#contact" class="nav-link text-slate-300 hover:text-white">聯絡我</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="theme-toggle">
+                        <i class="fas fa-moon text-slate-300 hover:text-white text-xl"></i>
+                    </div>
+                    <div class="md:hidden menu-toggle cursor-pointer">
+                        <i class="fas fa-bars text-slate-300 hover:text-white text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-menu hidden bg-slate-800 md:hidden">
+                <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                    <a href="#home" class="text-slate-300 hover:text-white">首頁</a>
+                    <a href="#about" class="text-slate-300 hover:text-white">關於我</a>
+                    <a href="#skills" class="text-slate-300 hover:text-white">技能</a>
+                    <a href="#portfolio" class="text-slate-300 hover:text-white">作品集</a>
+                    <a href="#experience" class="text-slate-300 hover:text-white">經歷</a>
+                    <a href="#contact" class="text-slate-300 hover:text-white">聯絡我</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 首頁區塊 -->
+        <section id="home" class="min-h-screen flex items-center justify-center hero-bg pt-20">
+            <div class="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">你好，我是 <span class="gradient-text">王小明</span></h1>
+                    <h2 class="text-2xl md:text-3xl text-slate-300 mb-8">前端開發者 & UI/UX 設計師</h2>
+                    <p class="text-slate-400 text-lg mb-10 max-w-lg">我專注於創建美觀且功能強大的網站和應用程式，結合創意設計與技術實現，打造出色的用戶體驗。</p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="btn-primary px-8 py-3 rounded-full font-medium">聯絡我</a>
+                        <a href="#portfolio"
+                            class="px-8 py-3 rounded-full border border-slate-600 hover:border-sky-400 transition-all duration-300">查看作品</a>
+                    </div>
+                    <div class="flex space-x-6 mt-10">
+                        <a href="#" class="text-slate-400 hover:text-sky-400 transition-all duration-300">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-sky-400 transition-all duration-300">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-sky-400 transition-all duration-300">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-sky-400 transition-all duration-300">
+                            <i class="fab fa-dribbble text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80 floating">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="absolute w-full h-full">
+                            <path fill="#38BDF8"
+                                d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.6,90,-16.3,88.5,-1.5C87,13.4,81.3,26.8,73.4,38.4C65.4,50,55.2,59.8,43,65.7C30.8,71.7,15.4,73.8,0.7,72.7C-14,71.6,-28,67.3,-40.6,60.5C-53.2,53.7,-64.3,44.4,-70.6,32.8C-76.9,21.2,-78.3,7.3,-76.9,-6.4C-75.5,-20.1,-71.2,-33.8,-63.4,-45.2C-55.6,-56.6,-44.3,-65.8,-31.8,-73.5C-19.3,-81.2,-5.7,-87.4,7.9,-86.6C21.5,-85.8,43,-83.6,44.7,-76.4Z"
+                                transform="translate(100 100)" />
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                class="w-32 h-32 text-white fill-current">
+                                <path
+                                    d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 關於我區塊 -->
+        <section id="about" class="py-20 bg-slate-800/50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">關於我</h2>
+                    <div class="w-20 h-1 bg-sky-500 mx-auto"></div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-10 md:mb-0">
+                        <div class="relative w-full max-w-md mx-auto">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg transform rotate-6">
+                            </div>
+                            <div class="card relative p-6 rounded-lg">
+                                <div class="aspect-w-1 aspect-h-1 mb-6">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                        class="w-full h-full text-sky-400 fill-current">
+                                        <path
+                                            d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                                    </svg>
+                                </div>
+                                <div class="text-center">
+                                    <h3 class="text-2xl font-bold mb-2">王小明</h3>
+                                    <p class="text-slate-300 mb-4">前端開發者 & UI/UX 設計師</p>
+                                    <div class="flex justify-center space-x-4 mb-6">
+                                        <a href="#"
+                                            class="text-slate-400 hover:text-sky-400 transition-all duration-300">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                        <a href="#"
+                                            class="text-slate-400 hover:text-sky-400 transition-all duration-300">
+                                            <i class="fab fa-linkedin"></i>
+                                        </a>
+                                        <a href="#"
+                                            class="text-slate-400 hover:text-sky-400 transition-all duration-300">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                    </div>
+                                    <div class="flex items-center justify-center space-x-2">
+                                        <i class="fas fa-map-marker-alt text-sky-400"></i>
+                                        <span class="text-slate-300">台北市，台灣</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-10">
+                        <h3 class="text-2xl font-bold mb-6 gradient-text">我的故事</h3>
+                        <p class="text-slate-300 mb-6">
+                            嗨！我是王小明，一位充滿熱情的前端開發者和UI/UX設計師。我擁有5年的網頁開發經驗，專注於創建既美觀又實用的數位體驗。
+                        </p>
+                        <p class="text-slate-300 mb-6">
+                            我相信優秀的設計應該是功能與美學的完美結合。我熱衷於將複雜的問題轉化為簡潔、直觀的解決方案，並且總是追求創新和突破。
+                        </p>
+                        <div class="grid grid-cols-2 gap-6 mb-8">
+                            <div>
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-envelope text-sky-400 mr-2"></i>
+                                    <span class="text-slate-300">info@example.com</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-phone text-sky-400 mr-2"></i>
+                                    <span class="text-slate-300">+886 912 345 678</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-graduation-cap text-sky-400 mr-2"></i>
+                                    <span class="text-slate-300">資訊工程學士</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-briefcase text-sky-400 mr-2"></i>
+                                    <span class="text-slate-300">5年工作經驗</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#contact" class="btn-primary inline-block px-8 py-3 rounded-full font-medium">下載履歷</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 技能區塊 -->
+        <section id="skills" class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">我的技能</h2>
+                    <div class="w-20 h-1 bg-sky-500 mx-auto"></div>
+                    <p class="text-slate-300 mt-6 max-w-2xl mx-auto">我擅長運用各種前端技術和設計工具，創建出色的用戶體驗和視覺效果。</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-6 gradient-text">開發技能</h3>
+
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-slate-300">HTML & CSS</span>
+                                <span class="text-sky-400">95%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-700 rounded-full">
+                                <div class="progress-bar w-[95%]"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-slate-300">JavaScript</span>
+                                <span class="text-sky-400">90%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-700 rounded-full">
+                                <div class="progress-bar w-[90%]"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-slate-300">React</span>
+                                <span class="text-sky-400">85%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-700 rounded-full">
+                                <div class="progress-bar w-[85%]"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-slate-300">Vue.js</span>
+                                <span class="text-sky-400">80%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-700 rounded-full">
+                                <div class="progress-bar w-[80%]"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-slate-300">Node.js</span>
+                                <span class="text-sky-400">75%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-700 rounded-full">
+                                <div class="progress-bar w-[75%]"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-6 gradient-text">設計技能</h3>
+
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-slate-300">UI/UX 設計</span>
+                                <span class="text-sky-400">90%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-700 rounded-full">
+                                <div class="progress-bar w-[90%]"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-slate-300">Figma</span>
+                                <span class="text-sky-400">95%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-700 rounded-full">
+                                <div class="progress-bar w-[95%]"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-slate-300">Adobe XD</span>
+                                <span class="text-sky-400">85%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-700 rounded-full">
+                                <div class="progress-bar w-[85%]"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-slate-300">Photoshop</span>
+                                <span class="text-sky-400">80%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-700 rounded-full">
+                                <div class="progress-bar w-[80%]"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-slate-300">Illustrator</span>
+                                <span class="text-sky-400">75%</span>
+                            </div>
+                            <div class="w-full h-2 bg-slate-700 rounded-full">
+                                <div class="progress-bar w-[75%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                    <div class="card p-6 rounded-lg text-center">
+                        <div class="text-4xl text-sky-400 mb-4">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">前端開發</h4>
+                        <p class="text-slate-400">創建響應式、高性能的網站界面</p>
+                    </div>
+
+                    <div class="card p-6 rounded-lg text-center">
+                        <div class="text-4xl text-sky-400 mb-4">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">UI/UX 設計</h4>
+                        <p class="text-slate-400">設計直觀且美觀的用戶界面</p>
+                    </div>
+
+                    <div class="card p-6 rounded-lg text-center">
+                        <div class="text-4xl text-sky-400 mb-4">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">響應式設計</h4>
+                        <p class="text-slate-400">確保在所有設備上的最佳體驗</p>
+                    </div>
+
+                    <div class="card p-6 rounded-lg text-center">
+                        <div class="text-4xl text-sky-400 mb-4">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">性能優化</h4>
+                        <p class="text-slate-400">提升網站速度和用戶體驗</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 作品集區塊 -->
+        <section id="portfolio" class="py-20 bg-slate-800/50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">我的作品集</h2>
+                    <div class="w-20 h-1 bg-sky-500 mx-auto"></div>
+                    <p class="text-slate-300 mt-6 max-w-2xl mx-auto">這些是我近期完成的一些項目，展示了我的設計理念和技術能力。</p>
+                </div>
+
+                <div class="flex justify-center mb-10">
+                    <div class="flex space-x-4 overflow-x-auto pb-4">
+                        <button class="portfolio-filter px-6 py-2 rounded-full bg-sky-500 text-white">全部</button>
+                        <button
+                            class="portfolio-filter px-6 py-2 rounded-full bg-slate-700 hover:bg-slate-600 transition-all duration-300">網站</button>
+                        <button
+                            class="portfolio-filter px-6 py-2 rounded-full bg-slate-700 hover:bg-slate-600 transition-all duration-300">應用程式</button>
+                        <button
+                            class="portfolio-filter px-6 py-2 rounded-full bg-slate-700 hover:bg-slate-600 transition-all duration-300">UI/UX</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 作品項目 1 -->
+                    <div class="portfolio-item rounded-lg overflow-hidden">
+                        <svg class="w-full h-64 bg-slate-700" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="800" height="600" fill="#1E293B" />
+                            <circle cx="400" cy="300" r="150" fill="#38BDF8" opacity="0.5" />
+                            <rect x="250" y="150" width="300" height="300" fill="#0F172A" opacity="0.8" />
+                            <line x1="300" y1="250" x2="500" y2="250" stroke="#FFFFFF" stroke-width="2" />
+                            <line x1="300" y1="300" x2="500" y2="300" stroke="#FFFFFF" stroke-width="2" />
+                            <line x1="300" y1="350" x2="500" y2="350" stroke="#FFFFFF" stroke-width="2" />
+                        </svg>
+                        <div class="portfolio-overlay">
+                            <h3 class="text-xl font-bold mb-2">企業網站設計</h3>
+                            <p class="text-slate-300 mb-4 text-center px-6">為科技公司設計的現代化響應式網站</p>
+                            <a href="#"
+                                class="px-6 py-2 rounded-full bg-sky-500 hover:bg-sky-600 transition-all duration-300">查看詳情</a>
+                        </div>
+                    </div>
+
+                    <!-- 作品項目 2 -->
+                    <div class="portfolio-item rounded-lg overflow-hidden">
+                        <svg class="w-full h-64 bg-slate-700" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="800" height="600" fill="#1E293B" />
+                            <rect x="200" y="150" width="400" height="300" rx="20" fill="#0F172A" />
+                            <circle cx="400" cy="250" r="50" fill="#38BDF8" />
+                            <rect x="300" y="320" width="200" height="20" rx="10" fill="#FFFFFF" opacity="0.7" />
+                            <rect x="350" y="360" width="100" height="20" rx="10" fill="#38BDF8" opacity="0.7" />
+                        </svg>
+                        <div class="portfolio-overlay">
+                            <h3 class="text-xl font-bold mb-2">行動應用程式</h3>
+                            <p class="text-slate-300 mb-4 text-center px-6">健康追蹤應用程式的UI/UX設計</p>
+                            <a href="#"
+                                class="px-6 py-2 rounded-full bg-sky-500 hover:bg-sky-600 transition-all duration-300">查看詳情</a>
+                        </div>
+                    </div>
+
+                    <!-- 作品項目 3 -->
+                    <div class="portfolio-item rounded-lg overflow-hidden">
+                        <svg class="w-full h-64 bg-slate-700" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="800" height="600" fill="#1E293B" />
+                            <polygon points="400,150 600,350 200,350" fill="#38BDF8" opacity="0.5" />
+                            <circle cx="400" cy="350" r="100" fill="#0F172A" />
+                            <rect x="350" y="330" width="100" height="40" rx="5" fill="#FFFFFF" opacity="0.7" />
+                        </svg>
+                        <div class="portfolio-overlay">
+                            <h3 class="text-xl font-bold mb-2">電子商務平台</h3>
+                            <p class="text-slate-300 mb-4 text-center px-6">時尚品牌的線上購物網站</p>
+                            <a href="#"
+                                class="px-6 py-2 rounded-full bg-sky-500 hover:bg-sky-600 transition-all duration-300">查看詳情</a>
+                        </div>
+                    </div>
+
+                    <!-- 作品項目 4 -->
+                    <div class="portfolio-item rounded-lg overflow-hidden">
+                        <svg class="w-full h-64 bg-slate-700" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="800" height="600" fill="#1E293B" />
+                            <rect x="200" y="200" width="400" height="200" fill="#0F172A" />
+                            <circle cx="300" cy="300" r="50" fill="#38BDF8" opacity="0.7" />
+                            <circle cx="500" cy="300" r="50" fill="#38BDF8" opacity="0.4" />
+                            <line x1="300" y1="300" x2="500" y2="300" stroke="#FFFFFF" stroke-width="2" />
+                        </svg>
+                        <div class="portfolio-overlay">
+                            <h3 class="text-xl font-bold mb-2">數據視覺化</h3>
+                            <p class="text-slate-300 mb-4 text-center px-6">互動式數據儀表板設計</p>
+                            <a href="#"
+                                class="px-6 py-2 rounded-full bg-sky-500 hover:bg-sky-600 transition-all duration-300">查看詳情</a>
+                        </div>
+                    </div>
+
+                    <!-- 作品項目 5 -->
+                    <div class="portfolio-item rounded-lg overflow-hidden">
+                        <svg class="w-full h-64 bg-slate-700" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="800" height="600" fill="#1E293B" />
+                            <rect x="250" y="150" width="300" height="300" fill="#0F172A" rx="10" />
+                            <circle cx="400" cy="230" r="40" fill="#38BDF8" opacity="0.6" />
+                            <rect x="320" y="300" width="160" height="15" rx="7.5" fill="#FFFFFF" opacity="0.7" />
+                            <rect x="320" y="330" width="160" height="15" rx="7.5" fill="#FFFFFF" opacity="0.5" />
+                            <rect x="320" y="360" width="160" height="15" rx="7.5" fill="#FFFFFF" opacity="0.3" />
+                        </svg>
+                        <div class="portfolio-overlay">
+                            <h3 class="text-xl font-bold mb-2">社交媒體應用</h3>
+                            <p class="text-slate-300 mb-4 text-center px-6">社群平台的用戶界面設計</p>
+                            <a href="#"
+                                class="px-6 py-2 rounded-full bg-sky-500 hover:bg-sky-600 transition-all duration-300">查看詳情</a>
+                        </div>
+                    </div>
+
+                    <!-- 作品項目 6 -->
+                    <div class="portfolio-item rounded-lg overflow-hidden">
+                        <svg class="w-full h-64 bg-slate-700" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="800" height="600" fill="#1E293B" />
+                            <rect x="150" y="150" width="500" height="300" fill="#0F172A" rx="5" />
+                            <rect x="200" y="200" width="150" height="200" fill="#38BDF8" opacity="0.3" />
+                            <rect x="400" y="200" width="200" height="80" fill="#38BDF8" opacity="0.5" />
+                            <rect x="400" y="320" width="200" height="80" fill="#38BDF8" opacity="0.7" />
+                        </svg>
+                        <div class="portfolio-overlay">
+                            <h3 class="text-xl font-bold mb-2">個人作品集</h3>
+                            <p class="text-slate-300 mb-4 text-center px-6">攝影師的作品展示網站</p>
+                            <a href="#"
+                                class="px-6 py-2 rounded-full bg-sky-500 hover:bg-sky-600 transition-all duration-300">查看詳情</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <a href="#" class="btn-primary px-8 py-3 rounded-full font-medium">查看更多作品</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 經歷區塊 -->
+        <section id="experience" class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">工作經歷</h2>
+                    <div class="w-20 h-1 bg-sky-500 mx-auto"></div>
+                    <p class="text-slate-300 mt-6 max-w-2xl mx-auto">我的專業經驗和教育背景。</p>
+                </div>
+
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                        <h3 class="text-2xl font-bold mb-6 gradient-text">工作經驗</h3>
+
+                        <div class="timeline-item pb-10">
+                            <div class="timeline-dot"></div>
+                            <div class="card p-6 rounded-lg">
+                                <h4 class="text-xl font-bold mb-2">資深前端開發者</h4>
+                                <p class="text-sky-400 mb-4">科技創新有限公司 | 2020 - 至今</p>
+                                <p class="text-slate-300">
+                                    負責公司主要產品的前端開發，使用React和TypeScript構建高性能的用戶界面。帶領前端團隊，實施最佳實踐和現代化開發流程。
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-4">
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">React</span>
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">TypeScript</span>
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Redux</span>
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Tailwind CSS</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item pb-10">
+                            <div class="timeline-dot"></div>
+                            <div class="card p-6 rounded-lg">
+                                <h4 class="text-xl font-bold mb-2">UI/UX 設計師</h4>
+                                <p class="text-sky-400 mb-4">創意設計工作室 | 2018 - 2020</p>
+                                <p class="text-slate-300">
+                                    為多個客戶設計網站和應用程式界面，創建用戶流程和互動原型。與開發團隊密切合作，確保設計的準確實現。
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-4">
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Figma</span>
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Adobe XD</span>
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Sketch</span>
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Prototyping</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="card p-6 rounded-lg">
+                                <h4 class="text-xl font-bold mb-2">前端開發實習生</h4>
+                                <p class="text-sky-400 mb-4">網路科技公司 | 2017 - 2018</p>
+                                <p class="text-slate-300">
+                                    參與公司網站和內部工具的開發，學習前端技術和最佳實踐。協助優化網站性能和用戶體驗。
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-4">
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">HTML/CSS</span>
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">JavaScript</span>
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">jQuery</span>
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Bootstrap</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:w-1/2 md:pl-10">
+                        <h3 class="text-2xl font-bold mb-6 gradient-text">教育背景</h3>
+
+                        <div class="timeline-item pb-10">
+                            <div class="timeline-dot"></div>
+                            <div class="card p-6 rounded-lg">
+                                <h4 class="text-xl font-bold mb-2">資訊工程碩士</h4>
+                                <p class="text-sky-400 mb-4">國立台灣大學 | 2015 - 2017</p>
+                                <p class="text-slate-300">
+                                    專注於人機互動和用戶體驗研究，完成關於移動應用用戶界面設計的論文研究。
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-4">
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">HCI</span>
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">UX Research</span>
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Mobile UI</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="card p-6 rounded-lg">
+                                <h4 class="text-xl font-bold mb-2">資訊工程學士</h4>
+                                <p class="text-sky-400 mb-4">國立清華大學 | 2011 - 2015</p>
+                                <p class="text-slate-300">
+                                    學習計算機科學基礎和軟體開發，參與多個網頁和移動應用開發項目。
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-4">
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Computer Science</span>
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Web Development</span>
+                                    <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Algorithms</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-12">
+                            <h3 class="text-2xl font-bold mb-6 gradient-text">證書</h3>
+
+                            <div class="card p-6 rounded-lg mb-6">
+                                <div class="flex items-center">
+                                    <div class="text-3xl text-sky-400 mr-4">
+                                        <i class="fas fa-certificate"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold">Google UX Design 專業證書</h4>
+                                        <p class="text-slate-400">2021年取得</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card p-6 rounded-lg">
+                                <div class="flex items-center">
+                                    <div class="text-3xl text-sky-400 mr-4">
+                                        <i class="fas fa-certificate"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-bold">AWS 認證雲端開發者</h4>
+                                        <p class="text-slate-400">2022年取得</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 聯絡我區塊 -->
+        <section id="contact" class="py-20 bg-slate-800/50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">聯絡我</h2>
+                    <div class="w-20 h-1 bg-sky-500 mx-auto"></div>
+                    <p class="text-slate-300 mt-6 max-w-2xl mx-auto">如果您有任何問題或合作機會，請隨時與我聯繫。</p>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-10">
+                    <div class="md:w-1/2">
+                        <div class="card p-8 rounded-lg h-full">
+                            <h3 class="text-2xl font-bold mb-6 gradient-text">聯絡資訊</h3>
+
+                            <div class="flex items-start mb-6">
+                                <div class="text-sky-400 text-xl mr-4 mt-1">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold mb-2">地址</h4>
+                                    <p class="text-slate-300">台北市信義區信義路五段100號</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start mb-6">
+                                <div class="text-sky-400 text-xl mr-4 mt-1">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold mb-2">電子郵件</h4>
+                                    <p class="text-slate-300">info@example.com</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start mb-6">
+                                <div class="text-sky-400 text-xl mr-4 mt-1">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold mb-2">電話</h4>
+                                    <p class="text-slate-300">+886 912 345 678</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="text-sky-400 text-xl mr-4 mt-1">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold mb-2">工作時間</h4>
+                                    <p class="text-slate-300">週一至週五: 9:00 - 18:00</p>
+                                    <p class="text-slate-300">週六至週日: 休息</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-10">
+                                <h4 class="text-lg font-semibold mb-4">社交媒體</h4>
+                                <div class="flex space-x-4">
+                                    <a href="#"
+                                        class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-sky-400 hover:bg-sky-500 hover:text-white transition-all duration-300">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#"
+                                        class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-sky-400 hover:bg-sky-500 hover:text-white transition-all duration-300">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#"
+                                        class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-sky-400 hover:bg-sky-500 hover:text-white transition-all duration-300">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="#"
+                                        class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-sky-400 hover:bg-sky-500 hover:text-white transition-all duration-300">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="#"
+                                        class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-sky-400 hover:bg-sky-500 hover:text-white transition-all duration-300">
+                                        <i class="fab fa-dribbble"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:w-1/2">
+                        <div class="card p-8 rounded-lg">
+                            <h3 class="text-2xl font-bold mb-6 gradient-text">傳送訊息</h3>
+
+                            <form id="contactForm" class="demo-form">
+                                <div class="mb-6">
+                                    <label for="name" class="block text-slate-300 mb-2">姓名</label>
+                                    <input type="text" id="name"
+                                        class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-sky-400 text-white"
+                                        placeholder="請輸入您的姓名">
+                                </div>
+
+                                <div class="mb-6">
+                                    <label for="email" class="block text-slate-300 mb-2">電子郵件</label>
+                                    <input type="email" id="email"
+                                        class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-sky-400 text-white"
+                                        placeholder="請輸入您的電子郵件">
+                                </div>
+
+                                <div class="mb-6">
+                                    <label for="subject" class="block text-slate-300 mb-2">主題</label>
+                                    <input type="text" id="subject"
+                                        class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-sky-400 text-white"
+                                        placeholder="請輸入訊息主題">
+                                </div>
+
+                                <div class="mb-6">
+                                    <label for="message" class="block text-slate-300 mb-2">訊息</label>
+                                    <textarea id="message" rows="5"
+                                        class="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg focus:outline-none focus:border-sky-400 text-white resize-none"
+                                        placeholder="請輸入您的訊息"></textarea>
+                                </div>
+
+                                <button type="submit"
+                                    class="btn-primary w-full py-3 rounded-lg font-medium text-lg">發送訊息</button>
+                            </form>
+
+                            <div id="formStatus" class="mt-4 text-center hidden">
+                                <p class="text-green-400">
+                                    <i class="fas fa-check-circle mr-2"></i>
+                                    您的訊息已成功發送！我會盡快回覆您。
+                                </p>
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <p class="text-slate-400 text-sm">這是一個示範表單，實際發送功能需要後端支援</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 頁尾區塊 -->
+        <footer class="py-10 bg-slate-900">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-6 md:mb-0">
+                        <a href="#" class="text-2xl font-bold gradient-text">個人品牌</a>
+                        <p class="text-slate-400 mt-2">打造出色的數位體驗</p>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-4 mb-6 md:mb-0">
+                        <a href="#home" class="text-slate-300 hover:text-sky-400 transition-all duration-300">首頁</a>
+                        <a href="#about" class="text-slate-300 hover:text-sky-400 transition-all duration-300">關於我</a>
+                        <a href="#skills" class="text-slate-300 hover:text-sky-400 transition-all duration-300">技能</a>
+                        <a href="#portfolio"
+                            class="text-slate-300 hover:text-sky-400 transition-all duration-300">作品集</a>
+                        <a href="#experience"
+                            class="text-slate-300 hover:text-sky-400 transition-all duration-300">經歷</a>
+                        <a href="#contact" class="text-slate-300 hover:text-sky-400 transition-all duration-300">聯絡我</a>
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-sky-400 transition-all duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-sky-400 transition-all duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-sky-400 transition-all duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-sky-400 transition-all duration-300">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-sky-400 transition-all duration-300">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-800 mt-8 pt-8 text-center">
+                    <p class="text-slate-400">&copy; 2023 個人品牌. 保留所有權利.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- 回到頂部按鈕 -->
+        <button id="backToTop"
+            class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-sky-500 text-white flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-sky-600">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
+        <script>
+            // 導航欄滾動效果
+            const navbar = document.querySelector('nav');
+            const backToTopBtn = document.getElementById('backToTop');
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('py-2');
+                    navbar.classList.remove('py-4');
+                    backToTopBtn.classList.remove('opacity-0', 'invisible');
+                    backToTopBtn.classList.add('opacity-100', 'visible');
+                } else {
+                    navbar.classList.add('py-4');
+                    navbar.classList.remove('py-2');
+                    backToTopBtn.classList.add('opacity-0', 'invisible');
+                    backToTopBtn.classList.remove('opacity-100', 'visible');
+                }
+
+                // 滾動指示器
+                const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                scrollIndicator.style.width = `${scrollPercentage}%`;
+            });
+
+            // 回到頂部按鈕
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // 移動菜單切換
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // 平滑滾動
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+
+                        // 如果是移動菜單，點擊後關閉
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+
+            // 技能進度條動畫
+            const progressBars = document.querySelectorAll('.progress-bar');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.width = entry.target.parentElement.dataset.progress || entry.target.style.width;
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            progressBars.forEach(bar => {
+                observer.observe(bar);
+            });
+
+            // 作品集過濾器
+            const portfolioFilters = document.querySelectorAll('.portfolio-filter');
+
+            portfolioFilters.forEach(filter => {
+                filter.addEventListener('click', () => {
+                    // 移除所有過濾器的活動狀態
+                    portfolioFilters.forEach(f => {
+                        f.classList.remove('bg-sky-500');
+                        f.classList.add('bg-slate-700');
+                    });
+
+                    // 添加當前過濾器的活動狀態
+                    filter.classList.remove('bg-slate-700');
+                    filter.classList.add('bg-sky-500');
+
+                    // 這裡可以添加實際的過濾邏輯
+                });
+            });
+
+            // 主題切換
+            const themeToggle = document.querySelector('.theme-toggle');
+            const themeIcon = themeToggle.querySelector('i');
+
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                }
+            });
+
+            // 鼠標跟隨效果
+            const cursorGlow = document.querySelector('.cursor-glow');
+
+            if (window.innerWidth > 768) {
+                document.addEventListener('mousemove', (e) => {
+                    cursorGlow.style.left = `${e.clientX}px`;
+                    cursorGlow.style.top = `${e.clientY}px`;
+                });
+            }
+
+            // 表單提交
+            const contactForm = document.getElementById('contactForm');
+            const formStatus = document.getElementById('formStatus');
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // 模擬表單提交
+                formStatus.classList.remove('hidden');
+
+                // 清空表單
+                contactForm.reset();
+            });
+
+            // 粒子背景
+            const animatedBg = document.querySelector('.animated-bg');
+
+            function createParticles() {
+                for (let i = 0; i < 50; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+
+                    const size = Math.random() * 5 + 1;
+                    const posX = Math.random() * window.innerWidth;
+                    const posY = Math.random() * window.innerHeight;
+                    const duration = Math.random() * 10 + 5;
+                    const delay = Math.random() * 5;
+
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}px`;
+                    particle.style.top = `${posY}px`;
+                    particle.style.opacity = Math.random() * 0.5 + 0.1;
+
+                    particle.style.animation = `floating ${duration}s ease-in-out ${delay}s infinite alternate`;
+
+                    animatedBg.appendChild(particle);
+                }
+            }
+
+            createParticles();
+
+            // 視窗調整時重新創建粒子
+            window.addEventListener('resize', () => {
+                animatedBg.innerHTML = '';
+                createParticles();
+            });
+        </script>
+    </body>
+
+</html>
