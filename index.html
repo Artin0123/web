@@ -117,6 +117,9 @@
             // Initialize Firebase
             const app = initializeApp(firebaseConfig);
             const analytics = getAnalytics(app);
+            // Log events
+            logEvent(analytics, 'page_view');
+            logEvent(analytics, 'visit_recorded', { source: 'pixel.png' });
         </script>
     </body>
 

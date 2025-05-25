@@ -74,11 +74,9 @@
         <div class="test-content">
             <h1>暗黑模式測試</h1>
             <p>點擊下面的按鈕來測試暗黑模式切換功能：</p>
-
             <div class="theme-toggle">
                 <i class="fas fa-moon"></i>
             </div>
-
             <p>如果功能正常：</p>
             <ul style="text-align: left; display: inline-block;">
                 <li>點擊月亮圖標會切換到暗黑模式（白底黑字）</li>
@@ -86,16 +84,13 @@
                 <li>再次點擊會切換回原模式</li>
             </ul>
         </div>
-
         <script>
             // 暗黑模式切換功能
             const themeToggle = document.querySelector('.theme-toggle');
             const themeIcon = themeToggle.querySelector('i');
-
             themeToggle.addEventListener('click', () => {
                 console.log('Theme toggle clicked!'); // 調試信息
                 document.body.classList.toggle('dark-mode');
-
                 if (document.body.classList.contains('dark-mode')) {
                     themeIcon.classList.remove('fa-moon');
                     themeIcon.classList.add('fa-sun');
