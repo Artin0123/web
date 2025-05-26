@@ -1,3 +1,7 @@
+// 隨機選擇圖片
+const images = ['assets/IMG_3004.JPG', 'assets/blonde.png'];
+const randomIndex = Math.floor(Math.random() * images.length);
+document.getElementById('randomImage').src = images[randomIndex];
 // 滾動指示器
 const scrollIndicator = document.querySelector('.scroll-indicator');
 window.addEventListener('scroll', () => {
@@ -74,22 +78,37 @@ themeToggle.addEventListener('click', () => {
         themeIcon.classList.add('fa-moon');
     }
 });
-// 添加移動端菜單按鈕（如果需要）
+// 修正移動端菜單按鈕 - 移除重複創建的問題
 if (window.innerWidth <= 768) {
-    const menuButton = document.createElement('button');
-    menuButton.innerHTML = '<i class="fas fa-bars"></i>';
-    menuButton.style.cssText = `
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 1000;
-        background: rgba(30, 41, 59, 0.8);
-        border: 1px solid rgba(56, 189, 248, 0.3);
-        color: #38bdf8;
-        padding: 10px;
-        border-radius: 5px;
-        font-size: 18px;
-    `;
-    menuButton.onclick = toggleSidebar;
-    document.body.appendChild(menuButton);
+    // 檢查是否已經有移動端按鈕存在
+    const existingButton = document.querySelector('.mobile-menu-btn');
+    if (!existingButton) {
+        const menuButton = document.createElement('button');
+        menuButton.className = 'mobile-menu-btn';
+        menuButton.innerHTML = '<i class="fas fa-bars"></i>';
+        menuButton.style.cssText = `
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #38bdf8;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        `;
+        menuButton.onclick = toggleSidebar;
+        document.body.appendChild(menuButton);
+    }
+}
+// 點擊內容區域時關閉側邊欄（手機版）
+if (window.innerWidth <= 768) {
+    content.addEventListener('click', () => {
+        if (sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+        }
+    });
 }

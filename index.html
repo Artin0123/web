@@ -22,7 +22,7 @@
         <!-- 側邊欄 -->
         <div class="sidebar">
             <div class="sidebar-header">
-                <h3><i class="fas fa-bars"></i><span class="header-text">等雨停</span></h3>
+                <h3><i class="fas fa-bars"></i><span class="header-text">UwU</span></h3>
             </div>
             <ul class="nav-links">
                 <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> <span
@@ -45,7 +45,7 @@
                         <h1 class="gradient-text">阿廷</h1>
                     </div>
                     <div class="img1">
-                        <img src="assets/IMG_3004.JPG" alt="Good images">
+                        <img id="randomImage" src="" alt="Good images">
                         <img src="https://api-backend-nbfh.onrender.com/assets/pixel.png" style="display:none" />
                     </div>
                 </div>
@@ -74,10 +74,17 @@
                 <div class="page-content fade-in">
                     <h2 class="gradient-text">聯絡我</h2>
                     <div class="contact">
-                        <div class="link"> <a href="mailto:artinlintw@gmail.com" class="email-link"> <i
-                                    class="fa-solid fa-envelope"></i> <span
-                                    class="email-text">artinlintw@gmail.com</span>
-                            </a> </div>
+                        <div class="link">
+                            <a href="mailto:artinlintw@gmail.com" class="message-link">
+                                <i class="fa-solid fa-envelope"></i>
+                                <span class="message-text">artinlintw@gmail.com</span>
+                            </a>
+                            <br />
+                            <a href="https://discord.gg/2TR37Xx2" class="message-link">
+                                <i class="fab fa-discord"></i>
+                                <span class="message-text">artin23k</span>
+                            </a>
+                        </div>
                         <ul class="social-links">
                             <li><a href="https://youtube.com/@artinlin"><i class="fab fa-youtube"
                                         aria-hidden="true"></i></a></li>
@@ -100,7 +107,7 @@
         <script type="module">
             // Import the functions you need from the SDKs you need
             import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
-            import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
+            import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
             // TODO: Add SDKs for Firebase products that you want to use
             // https://firebase.google.com/docs/web/setup#available-libraries
             // Your web app's Firebase configuration
@@ -123,6 +130,9 @@
             const pixel = new Image();
             pixel.onload = () => {
                 logEvent(analytics, 'visit_recorded', { source: 'pixel.png' });
+            };
+            pixel.onerror = () => {
+                console.log('Pixel image failed to load');
             };
             pixel.src = 'https://api-backend-nbfh.onrender.com/assets/pixel.png';
         </script>
